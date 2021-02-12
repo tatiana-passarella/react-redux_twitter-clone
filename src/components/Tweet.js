@@ -6,6 +6,11 @@ import { TiHeartOutline } from 'react-icons/ti/index'
 import { TiHeartFullOutline } from 'react-icons/ti/index'
 
 class Tweet extends Component {
+  handleLike = (e) => {
+    e.preventDefault()
+
+    // todo: Handle Like Tweet
+  }
   toParent = (e, id) => {
     e.preventDefault()
     // todo: Redirect to parent Tweet.
@@ -19,7 +24,7 @@ class Tweet extends Component {
     console.log(this.props)
 
     const {
-      name, avatar, timestamp, text, hasLiked, likes, replies, id, parent
+      name, avatar, timestamp, text, hasLiked, likes, replies, parent
     } = tweet
     return (
         <div className='tweet'>
@@ -29,14 +34,26 @@ class Tweet extends Component {
             className='avatar'
           />
           <div className='tweet-info'>
-            <span>{name}</span>
-            <div>{formatDate(timestamp)}</div>
-            {parent && (
-              <button className='replying-to' onClick={(e) => this.toParent(e, parent.id)}>
-                Replying to @{parent.author}
+            <div>
+              <span>{name}</span>
+              <div>{formatDate(timestamp)}</div>
+              {parent && (
+                <button className='replying-to' onClick={(e) => this.toParent(e, parent.id)}>
+                  Replying to @{parent.author}
+                </button>
+              )}
+              <p>{text}</p>
+            </div>
+            <div className='tweet-icons'>
+              <TiArrowBackOutline className='tweet-icon' />
+              <span>{replies !== 0 && replies}</span>
+              <button className='heart-button' onClick={this.handleLike}>
+                {hasLiked === true
+                  ? <TiHeartFullOutline color='#e0245e' className='tweet-icon' />
+                  : <TiHeartOutline className='tweet-icon'/>}
               </button>
-            )}
-            <p>{text}</p>
+              <span>{likes !== 0 && likes}</span>
+            </div>
           </div>
         </div>
     )
