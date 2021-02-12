@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatTweet } from '../utils/helpers'
+import { formatTweet, formatDate } from '../utils/helpers'
 import { TiArrowBackOutline } from 'react-icons/ti/index'
 import { TiHeartOutline } from 'react-icons/ti/index'
 import { TiHeartFullOutline } from 'react-icons/ti/index'
@@ -12,7 +12,7 @@ class Tweet extends Component {
         if (tweet === null) {
           return <p>This tweet doesn't exist</p>
         }
-        //console.log(this.props)
+        console.log(this.props)
 
         const {
           name, avatar, timestamp, text, hasLiked, likes, replies, id, parent
@@ -24,6 +24,15 @@ class Tweet extends Component {
                 alt={`Avatar of ${name}`}
                 className='avatar'
               />
+              <div className='tweet-info'>
+                <span>{name}</span>
+                <div>{formatDate(timestamp)}</div>
+                {parent && ( //if parent is not null
+                  <button className='replying-to'>
+                    Replying to @{parent.author}
+                  </button>
+                )}
+              </div>
             </div>
         )
     }
