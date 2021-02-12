@@ -6,36 +6,41 @@ import { TiHeartOutline } from 'react-icons/ti/index'
 import { TiHeartFullOutline } from 'react-icons/ti/index'
 
 class Tweet extends Component {
-    render() {
-        const { tweet } = this.props
+  toParent = (e, id) => {
+    e.preventDefault()
+    // todo: Redirect to parent Tweet.
+  }
+  render() {
+    const { tweet } = this.props
 
-        if (tweet === null) {
-          return <p>This tweet doesn't exist</p>
-        }
-        console.log(this.props)
-
-        const {
-          name, avatar, timestamp, text, hasLiked, likes, replies, id, parent
-        } = tweet
-        return (
-            <div className='tweet'>
-              <img
-                src={avatar}
-                alt={`Avatar of ${name}`}
-                className='avatar'
-              />
-              <div className='tweet-info'>
-                <span>{name}</span>
-                <div>{formatDate(timestamp)}</div>
-                {parent && ( //if parent is not null
-                  <button className='replying-to'>
-                    Replying to @{parent.author}
-                  </button>
-                )}
-              </div>
-            </div>
-        )
+    if (tweet === null) {
+      return <p>This tweet doesn't exist</p>
     }
+    console.log(this.props)
+
+    const {
+      name, avatar, timestamp, text, hasLiked, likes, replies, id, parent
+    } = tweet
+    return (
+        <div className='tweet'>
+          <img
+            src={avatar}
+            alt={`Avatar of ${name}`}
+            className='avatar'
+          />
+          <div className='tweet-info'>
+            <span>{name}</span>
+            <div>{formatDate(timestamp)}</div>
+            {parent && (
+              <button className='replying-to' onClick={(e) => this.toParent(e, parent.id)}>
+                Replying to @{parent.author}
+              </button>
+            )}
+            <p>{text}</p>
+          </div>
+        </div>
+    )
+  }
 }
 
 
