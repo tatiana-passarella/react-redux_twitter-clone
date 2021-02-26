@@ -4,7 +4,7 @@ Chirper is a Twitter feed application built with React for Udacity's React Nanod
 
 ## Demo
 
-[Checkout this live demo](https://xrn98x9w2w.codesandbox.io/) of the Chirper app. Once the simulator has launched, follow these instructions:
+[Checkout this live demo](https://twitter.ui.dev/) of the Chirper app. Once the simulator has launched, follow these instructions:
 
 1. Select any Tweet to see the thread or reply.
 2. Use the Reply button to reply to any Tweet.
