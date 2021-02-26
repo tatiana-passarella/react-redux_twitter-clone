@@ -28,7 +28,7 @@ class Tweet extends Component {
     if (tweet === null) {
       return <p>This tweet doesn't exist</p>
     }
-    console.log(this.props)
+    //console.log(this.props)
 
     const {
       name, avatar, timestamp, text, hasLiked, likes, replies, parent
